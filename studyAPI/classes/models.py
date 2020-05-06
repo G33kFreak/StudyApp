@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 def image_folder(instanse, filename):
     filename = instanse.slug + '.' + filename.split('.')[1]
@@ -12,5 +13,6 @@ class ClassModel(models.Model):
     
     def __str__(self):
         return self.name
+    
     
     
