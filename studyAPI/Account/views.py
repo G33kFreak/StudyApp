@@ -1,48 +1,21 @@
-from django.db.models import Q
-from django.contrib.auth import get_user_model
-
-from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
-from rest_framework.views import APIView
-
-from rest_framework.filters import (
-    SearchFilter,
-    OrderingFilter
-)
-
-from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
-from rest_framework.generics import (
-    CreateAPIView,
-    DestroyAPIView,
-    UpdateAPIView,
-    RetrieveAPIView,
-    RetrieveUpdateAPIView
-)
-
-from rest_framework.permissions import (
-    AllowAny,
-    IsAuthenticated,
-    IsAdminUser,
-    IsAuthenticatedOrReadOnly
-)
-
-User = get_user_model()
-
-from .serializers import UserCreateSeriaizer, UserLoginSerializer
+from rest_framework.generics import (ListCreateAPIView,RetrieveUpdateDestroyAPIView,)
+from rest_framework.permissions import IsAuthenticated
+from .models import userProfile
+from .permissions import IsOwnerProfileOrReadOnly
+from .serializers import userProfileSerializer
 
 
-class UserCreateAPIView(CreateAPIView):
-    serializer_class = UserCreateSeriaizer
-    queryset = User.objects.all()
+class UserProfileListCreateView(ListCreateAPIView):
+    queryset = userProfile.objects.all()
+    serializer_class=userProfileSerializer
+    permission_classes=[IsAuthenticated]
 
-class UserLoginAPIView(APIView):
-    permission_classes = [AllowAny]
-    serializer_class = UserLoginSerializer
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(user=user)
 
-    def post(self, request, *args, **kwargs):
-        data = request.data
-        serializer = UserLoginSerializer(data = data)
-        if serializer.is_valid(raise_exception=True):
-            new_data = serializer.data
-            return Response(new_data, status=HTTP_200_OK)
-        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+class userProfileDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = userProfile.objects.all()
+    serializer_class=userProfileSerializer
+    permission_classes=[IsOwnerProfileOrReadOnly,IsAuthenticated]

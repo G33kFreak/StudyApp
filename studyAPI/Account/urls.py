@@ -1,8 +1,9 @@
-from django.urls import path, include
-from .views import UserCreateAPIView, UserLoginAPIView
-from rest_framework import routers
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+
+from .views import UserProfileListCreateView, userProfileDetailView
 
 urlpatterns = [
-    path('register', UserCreateAPIView.as_view()),
-    path('login', UserLoginAPIView.as_view())
+    path("all-profiles", UserProfileListCreateView.as_view(), name="all-profiles"),
+    path("profile/<int:pk>", userProfileDetailView.as_view(), name="profile"),
 ]
