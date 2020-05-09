@@ -1,84 +1,46 @@
 <template>
   <div id="app" class="container">
-
     <div class="header">
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">StudyApp</b-navbar-brand>
+      <b-navbar toggleable="lg" type="dark" variant="info">
+        <b-navbar-brand href="#" class="header-label">StudyApp</b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-        </b-navbar-nav>
-
-        <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-           <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-          </b-nav-form>
-
-          <b-nav-item-dropdown right>
-            <template v-slot:button-content>
-              <em>User</em>
-            </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+        <b-collapse id="nav-collapse" is-nav></b-collapse>
+      </b-navbar>
     </div>
-     <div class="content">
-       <div class="classes-containers" v-for="lecture in classes" v-bind:key="lecture">
-          <b-card>
-            <b-card-title>
-              <h3>{{lecture.name}}</h3>
-              <h5>Prowadzący: {{lecture.instructor}}</h5>
-            </b-card-title>
-            <b-card-text>
-              {{lecture.toDo}}
-            </b-card-text>
-          </b-card>
-       </div>
-     </div>
+    <div class="content">
+      <b-jumbotron bg-variant="info" text-variant="white" border-variant="dark">
+        <template v-slot:header>Study app</template>
+
+        <template v-slot:lead>
+          Platform that making homework monitoring easier 
+        </template>
+
+        <hr class="my-4" />
+
+        <p>
+          You have to login to the platform if you want to use it. If you still don't have an account, register now!
+        </p>
+        <b-button class="sign-up-button" size="lg" variant="light" href="http://192.168.0.7:8080/sign-up">Sign up</b-button>
+        <b-button class="login-button" size="lg" variant="light" href="#">Login</b-button>
+      </b-jumbotron>
+    </div>
   </div>
 </template>
 
-<script>
-import axios from "axios";
-export default {
-  name: 'app',
-  data(){
-    return{
-      loading: false, 
-      classes: null,
-    }
-  },
-  mounted(){
-    this.loading = true;
-    axios
-      .get('http://127.0.0.1:8000/api/classes/')
-      .then(response => (this.classes = response.data))
-      .catch(error => console.log(error))
-      .finally(() => this.loading = false)
-  }
-}
-</script>
-
 <style scoped>
-  .content{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    flex-wrap: wrap;
-  }
+.content {
+  margin-top: 5%;
+}
 
-  .classes-containers{
-    min-width: 50%;
-    max-width: 50%;
-    padding: 20px;
-  }
-
+.login-button {
+  margin-left: 3%;
+}
+.header-label {
+  float: left;
+  text-align: center;
+  width: 100%;
+  font-size: 34px;
+}
 </style>
-
-
