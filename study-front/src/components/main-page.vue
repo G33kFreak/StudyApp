@@ -23,7 +23,7 @@
           You have to login to the platform if you want to use it. If you still don't have an account, register now!
         </p>
         <b-button class="sign-up-button" size="lg" variant="light" href="http://192.168.0.7:8080/sign-up">Sign up</b-button>
-        <b-button class="login-button" size="lg" variant="light" href="#">Login</b-button>
+        <b-button class="login-button" size="lg" variant="light" href="http://192.168.0.7:8080/login">Login</b-button>
       </b-jumbotron>
     </div>
   </div>
