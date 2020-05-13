@@ -11,40 +11,45 @@ export const store = new Vuex.Store({
         filter: 'all',
     },
     getters: {
-        loggedIn(state){
+        loggedIn(state) {
             return state.token !== null
         },
     },
+    mutations: {
+        retrieveToken(state, token) {
+            state.token = token
+        },
+
+        destroyToken(state){
+            state.token = null
+        }
+    },
     actions: {
-        register(context, data){
+        retrieveToken(context, credentials) {
+
             return new Promise((resolve, reject) => {
-                axios.post('users/', {
-                    username: data.username,
-                    email: data.email,
-                    password: data.password,
+                axios.post('jwt/create/', {
+                    username: credentials.username,
+                    password: credentials.password,
                 })
-                .then(response => {
-                    resolve(response)
-                })
-                .catch(error => {
-                    reject(error)
-                })
+                    .then(response => {
+                        const token = response.data.access
+
+                        localStorage.setItem('access_token', token)
+                        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+                        context.commit('retrieveToken', token)
+                        resolve(response)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        reject(error)
+                    })
             })
         },
 
-        retrieveToken(сontext, credentials) {
-
-            axios.post('jwt/create/', {
-                username: credentials.username,
-                password: credentials.password,
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error =>{
-                console.log(error);
-            })
-           
-          },
+        destroyToken(context){
+            localStorage.removeItem('access_token')
+            context.commit('retriveToken')
+        }
     }
 })

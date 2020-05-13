@@ -36,11 +36,23 @@ export default {
 
   methods: {
     login() {
+      this.loading = true
       this.$store.dispatch('retrieveToken', {
         username: this.username,
-        password: this.password
-      });
-    },
+        password: this.password,
+      })
+        .then(response => {
+          this.loading = false
+          this.$router.push({ name: 'classes' })
+          console.log(response)
+        })
+        .catch(error => {
+          this.loading = false
+          this.serverError = error.response.data
+          this.password = ''
+          this.successMessage = ''
+        })
+    }
   }
 };
 </script>

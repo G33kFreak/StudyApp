@@ -20,7 +20,7 @@
                 <em>User</em>
               </template>
               <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+              <b-dropdown-item href="http://192.168.0.7:8080/logout">Logout</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -54,8 +54,14 @@ export default {
     this.loading = true;
     axios
       .get("http://127.0.0.1:8000/classes")
-      .then(response => (this.classes = response.data))
-      .catch(error => console.log(error))
+      .then(response => {
+        this.classes = response.data;
+        this.loading = false;
+      })
+      .catch(error => {
+        console.log(error);
+        this.loading = false;
+      })
       .finally(() => (this.loading = false));
   }
 };

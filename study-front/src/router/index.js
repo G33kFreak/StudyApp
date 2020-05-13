@@ -4,6 +4,8 @@ import Classes from '@/components/classes'
 import MainPage from '@/components/main-page'
 import SignUp from '@/components/sign-up'
 import Login from '@/components/login'
+import Logout from '@/components/logout'
+
 
 Vue.use(VueRouter)
 
@@ -21,12 +23,20 @@ const routes = [
     {
         path: '/sign-up',
         name: 'sign-up',
-        component: SignUp
+        component: SignUp,
+        meta: {
+            requiresVisitor: true,
+        }
     },
     {
         path: '/login',
         name: 'login',
         component: Login
+    },
+    {
+        path: '/logout',
+        name: 'logout',
+        component: Logout
     }
 ]
 
@@ -35,5 +45,6 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 })
+
 
 export default router
