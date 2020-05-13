@@ -46,22 +46,20 @@ export default {
   name: "app",
   data() {
     return {
-      loading: false,
       classes: null
     };
   },
+  
   mounted() {
     this.loading = true;
+    console.log("mounted")
     axios
       .get("http://127.0.0.1:8000/classes")
       .then(response => {
-        this.classes = response.data;
-        this.loading = false;
+        this.classes = response.data
+        console.log('work')
       })
-      .catch(error => {
-        console.log(error);
-        this.loading = false;
-      })
+      .catch(error => console.log(error))
       .finally(() => (this.loading = false));
   }
 };

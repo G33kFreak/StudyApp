@@ -29,29 +29,29 @@ export default {
   name: "login",
   data() {
     return {
-      username: '',
-      password: ''
+      username: "",
+      password: ""
     };
   },
 
   methods: {
     login() {
-      this.loading = true
-      this.$store.dispatch('retrieveToken', {
-        username: this.username,
-        password: this.password,
-      })
-        .then(response => {
-          this.loading = false
-          this.$router.push({ name: 'classes' })
-          console.log(response)
+      this.loading = true;
+      this.$store
+        .dispatch("retrieveToken", {
+          username: this.username,
+          password: this.password
+        })
+        .then(() => {
+          this.loading = false;
+          this.$router.push({ name: "classes" });
         })
         .catch(error => {
-          this.loading = false
-          this.serverError = error.response.data
-          this.password = ''
-          this.successMessage = ''
-        })
+          this.loading = false;
+          this.serverError = error.response.data;
+          this.password = "";
+          this.successMessage = "";
+        });
     }
   }
 };
