@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000/auth/jwt';
+const API_URL = 'http://127.0.0.1:8000/auth';
 
 class AuthService {
     login(user) {
         return axios
-            .post(API_URL + '/create', {
+            .post(API_URL + '/jwt/create', {
                 username: user.username,
                 password: user.password
             })
@@ -22,9 +22,9 @@ class AuthService {
     }
 
     register(user) {
-        return axios.post(API_URL + 'signup', {
-            username: user.username,
+        return axios.post(API_URL + '/users/', {
             email: user.email,
+            username: user.username,
             password: user.password
         });
     }

@@ -9,7 +9,7 @@
     </div>
     <div class="card-action">
       <a href="http://192.168.0.38:8080/login">Login</a>
-      <a href="#">Sign up</a>
+      <a href="http://192.168.0.38:8080/sign-up">Sign up</a>
     </div>
   </div>
 </template>
