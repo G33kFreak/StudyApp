@@ -7,4 +7,4 @@ from .serializers import ClassesSerializer
 class ClassView(viewsets.ModelViewSet):
     queryset = ClassModel.objects.all()
     serializer_class = ClassesSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
