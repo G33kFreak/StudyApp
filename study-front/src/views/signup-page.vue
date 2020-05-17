@@ -12,13 +12,13 @@
         <div class="row">
           <div class="input-field col s12">
             <input
-              id="email"
+              id="username"
               type="text"
               v-model="user.username"
               class="form-control"
               name="username"
             />
-            <label for="email">Username</label>
+            <label for="username">Username</label>
           </div>
         </div>
         <div class="row">
@@ -53,18 +53,19 @@ export default {
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push("/profile");
+      this.$router.push("/classes");
     }
   },
   methods: {
     handleRegister() {
-      console.log("works");
+      console.log(this.user);
       this.message = "";
       this.submitted = true;
       this.$store.dispatch("auth/register", this.user).then(
         data => {
           this.message = data.message;
           this.successful = true;
+          this.$router.push("/login");
         },
         error => {
           this.message =
@@ -81,7 +82,7 @@ export default {
 
 <style scoped>
 .container {
-  margin-top: 15%;
+  margin-top: 5%;
 }
 .cancel {
   margin: 5%;

@@ -74,7 +74,7 @@ export default {
 
 <style scoped>
 .container {
-  margin-top: 15%;
+  margin-top: 7%;
 }
 
 .cancel {
