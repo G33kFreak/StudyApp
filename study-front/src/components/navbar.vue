@@ -5,7 +5,7 @@
         <a href="#" class="brand-logo">StudyApp</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li v-if="isLogged">
-            <a href="#">Profile</a>
+            <a href="/profile">Profile</a>
           </li>
           <li v-if="isLogged">
             <a class="nav-link" href @click.prevent="logOut">Logout</a>

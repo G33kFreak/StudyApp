@@ -1,4 +1,5 @@
 import axios from 'axios';
+import authHeader from './auth-header';
 
 const API_URL = 'http://127.0.0.1:8000/auth';
 
@@ -13,12 +14,24 @@ class AuthService {
                 if (response.data.access) {
                     localStorage.setItem('user', JSON.stringify(response.data));
                 }
+                this.setUserId()
                 return response.data;
             });
     }
 
+    setUserId() {
+        axios.get(API_URL + '/users/me', { headers: authHeader() })
+            .then(response => {
+                localStorage.setItem('id_user', JSON.stringify(response.data.id))
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
     logout() {
         localStorage.removeItem('user');
+        localStorage.removeItem('id_user');
     }
 
     register(user) {

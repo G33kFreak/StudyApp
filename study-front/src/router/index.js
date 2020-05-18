@@ -4,6 +4,7 @@ import StartPage from '../views/start-page'
 import Classes from '../views/classes'
 import Login from '../views/login-page'
 import Signup from '../views/signup-page'
+import Profile from '../views/profile'
 
 
 Vue.use(VueRouter)
@@ -28,6 +29,11 @@ const routes = [
     path: '/sign-up',
     name: 'sign-up',
     component: Signup
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile
   }
 ]
 
