@@ -2,6 +2,10 @@
   <div>
     <Navbar />
     <router-view />
+    <div class="footer">
+      © 2020 Copyright:
+      <a href="https://github.com/G33kFreak">Ruslan Zaripov</a>
+    </div>
   </div>
 </template>
 
@@ -19,4 +23,17 @@ export default {
 </script>
 
 <style scoped>
+.footer {
+  position: fixed;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  color: #212121;
+}
+
+.footer a {
+  color: #EE6E73;
+  text-decoration: none;
+}
 </style>
