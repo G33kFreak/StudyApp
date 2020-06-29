@@ -5,6 +5,9 @@
         <a href="#" class="brand-logo">StudyApp</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li v-if="isLogged">
+            <a href="/classes">Classes</a>
+          </li>
+          <li v-if="isLogged">
             <a href="/profile">Profile</a>
           </li>
           <li v-if="isLogged">

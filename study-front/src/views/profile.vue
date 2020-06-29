@@ -1,17 +1,23 @@
 <template>
-  <div class="container">
-    <div class="col s12 m7">
-      <h2 class="header">Profile page</h2>
-      <div class="card horizontal usercard">
-        <div class="card-image">
-          <p class="typeOfUser">Student</p>
-        </div>
-        <div class="card-stacked profileInfoCard">
-          <div class="card-content profileInfo">
-            <li>Email: {{profileInfo.email}}</li>
-            <li>Username: {{profileInfo.username}}</li>
-            <li>First name: {{profileInfo.first_name}}</li>
-            <li>Last name: {{profileInfo.last_name}}</li>
+  <div>
+    <div class="progress" v-if="loading">
+      <div class="indeterminate"></div>
+    </div>
+    <div class="container">
+      <div class="col s12 m7">
+        <h2 class="header">Profile page</h2>
+        <div class="card horizontal usercard">
+          <div class="card-image">
+            <p class="typeOfUser" v-if="profileInfo.is_staff">Prowadzący</p>
+            <p class="typeOfUser" v-else>Student</p>
+          </div>
+          <div class="card-stacked profileInfoCard">
+            <div class="card-content profileInfo">
+              <li>Email: {{profileInfo.email}}</li>
+              <li>Username: {{profileInfo.username}}</li>
+              <li>First name: {{profileInfo.first_name}}</li>
+              <li>Last name: {{profileInfo.last_name}}</li>
+            </div>
           </div>
         </div>
       </div>
@@ -49,6 +55,7 @@ export default {
 <style scoped>
 .typeOfUser {
   font-size: 56px;
+  color: #ee6e73;
 }
 .profileInfo {
   font-size: 26px;
