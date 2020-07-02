@@ -9,3 +9,9 @@ class ClassesSerializer(serializers.ModelSerializer):
         model = ClassModel
         fields = ['id', 'name', 'instructor_name', 'homework']
 
+class HomeworkSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = HomeworkModel
+        fields = '__all__'
+

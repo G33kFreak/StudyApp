@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'http://192.168.0.115:8000'
 export default class APIservice {
 
     getClasses() {
-        return axios.get('/classes', { headers: authHeader() })
+        return axios.get('api/classes', { headers: authHeader() })
     }
 
     getProfileInfo() {
