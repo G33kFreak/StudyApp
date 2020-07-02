@@ -12,6 +12,7 @@
               <p class="timestamp">Prowadzący: {{lecture.instructor_name}}</p>
               <hr />
               <li v-for="homework in lecture.homework" v-bind:key="homework.id">{{homework}}</li>
+              <a v-if="profileInfo.is_staff" class="waves-effect btn">Add homework</a>
             </div>
           </div>
         </div>
@@ -27,6 +28,7 @@ export default {
   name: "classes",
   data() {
     return {
+      profileInfo: [],
       classes: [],
       loading: false
     };
@@ -41,8 +43,24 @@ export default {
       })
       .catch(error => {
         console.log(error);
+      });
+    myAPIservice
+      .getProfileInfo()
+      .then(response => {
+        this.profileInfo = response.data;
+        console.log(this.profileInfo);
+      })
+      .catch(error => {
+        console.log(error);
       })
       .finally(() => (this.loading = false));
   }
 };
 </script>
+
+<style  scoped>
+.btn {
+  background-color: #ee6e73;
+  margin-top: 25px;
+}
+</style>>

@@ -23,6 +23,7 @@ class AuthService {
         axios.get(API_URL + '/users/me', { headers: authHeader() })
             .then(response => {
                 localStorage.setItem('id_user', JSON.stringify(response.data.id))
+                location.reload();
             })
             .catch(error => {
                 console.log(error)
