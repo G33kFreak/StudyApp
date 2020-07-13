@@ -19,7 +19,7 @@
               >Add homework</a>
               <form :id="'form_' + lecture.id" class="homeworkForm">
                 <b>Description of homework:</b>
-                <input type="text" name="homeworkDescription" ref="homework_desc" />
+                <input type="text" v-model="description" name="homeworkDescription" ref="homework_desc" />
                 <a
                   class="waves-effect green btn-small addBtn"
                   @click.prevent="PostHomework(lecture.id)"
@@ -44,6 +44,7 @@ export default {
   name: "classes",
   data() {
     return {
+      description:'',
       profileInfo: [],
       classes: [],
       loading: false
@@ -64,8 +65,8 @@ export default {
     },
 
     PostHomework: function(id) {
-      let description = this.$refs.homework_desc.value;
-      myAPIservice.CreateHomework(description, id);
+      myAPIservice.CreateHomework(this.description, id);
+      console.log(this.description, id)
     }
   },
 

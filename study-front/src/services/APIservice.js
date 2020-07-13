@@ -20,7 +20,7 @@ export default class APIservice {
                 console.log(error);
             })
             .finally(() => {
-                //location.reload();
+                location.reload();
             })
     }
 }
