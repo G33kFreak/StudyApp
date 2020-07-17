@@ -11,7 +11,27 @@
               <p class="card-title">{{lecture.name}}</p>
               <p class="timestamp">Prowadzący: {{lecture.instructor_name}}</p>
               <hr />
-              <li v-for="homework in lecture.homework" v-bind:key="homework.id">{{homework}}</li>
+              <div
+                class="homework-container"
+                v-for="homework in lecture.homework"
+                v-bind:key="homework.id"
+              >
+                <h6>{{homework.description}}</h6>
+                <div v-if="homework.isOverdue" class="deadline-container" style="color: #4CAF50;">
+                  <div class="deadline-label-container" style="border: 2px solid #4caf50;">
+                    <p>Deadline</p>
+                  </div>
+                  <p>{{homework.deadlineDate}}</p>
+                  <p>{{homework.deadlineTime}}</p>
+                </div>
+                <div v-else class="deadline-container" style="color: #F44336;">
+                  <div class="deadline-label-container" style="border: 2px solid #F44336;">
+                    <p>Deadline</p>
+                  </div>
+                  <p>{{homework.deadlineDate}}</p>
+                  <p>{{homework.deadlineTime}}</p>
+                </div>
+              </div>
               <a
                 :id="'showFormBtn_' + lecture.id"
                 v-on:click="ShowHomeworkForm(lecture.id)"
@@ -19,7 +39,12 @@
               >Add homework</a>
               <form :id="'form_' + lecture.id" class="homeworkForm">
                 <b>Description of homework:</b>
-                <input type="text" v-model="description" name="homeworkDescription" ref="homework_desc" />
+                <input
+                  type="text"
+                  v-model="description"
+                  name="homeworkDescription"
+                  ref="homework_desc"
+                />
                 <a
                   class="waves-effect green btn-small addBtn"
                   @click.prevent="PostHomework(lecture.id)"
@@ -44,7 +69,7 @@ export default {
   name: "classes",
   data() {
     return {
-      description:'',
+      description: "",
       profileInfo: [],
       classes: [],
       loading: false
@@ -66,7 +91,7 @@ export default {
 
     PostHomework: function(id) {
       myAPIservice.CreateHomework(this.description, id);
-      console.log(this.description, id)
+      console.log(this.description, id);
     }
   },
 
@@ -113,4 +138,23 @@ export default {
   display: none;
   margin-top: 25px;
 }
+
+.homework-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.deadline-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.deadline-label-container {
+  margin-bottom: 5px;
+}
+
 </style>>
