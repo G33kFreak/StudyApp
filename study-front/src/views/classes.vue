@@ -17,15 +17,15 @@
                 v-bind:key="homework.id"
               >
                 <h6>{{homework.description}}</h6>
-                <div v-if="homework.isOverdue" class="deadline-container" style="color: #4CAF50;">
-                  <div class="deadline-label-container" style="border: 2px solid #4caf50;">
+                <div v-if="homework.isOverdue" class="deadline-container" style="color: #F44336;">
+                  <div class="deadline-label-container" style="border: 2px solid #F44336;">
                     <p>Deadline</p>
                   </div>
                   <p>{{homework.deadlineDate}}</p>
                   <p>{{homework.deadlineTime}}</p>
                 </div>
-                <div v-else class="deadline-container" style="color: #F44336;">
-                  <div class="deadline-label-container" style="border: 2px solid #F44336;">
+                <div v-else class="deadline-container" style="color: #4caf50;">
+                  <div class="deadline-label-container" style="border: 2px solid #4caf50;">
                     <p>Deadline</p>
                   </div>
                   <p>{{homework.deadlineDate}}</p>
@@ -155,6 +155,10 @@ export default {
 
 .deadline-label-container {
   margin-bottom: 5px;
+}
+
+.homework-container h6{
+  max-width: 70%;
 }
 
 </style>>
