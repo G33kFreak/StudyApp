@@ -16,7 +16,15 @@
                 v-for="homework in lecture.homework"
                 v-bind:key="homework.id"
               >
-                <h6>{{homework.description}}</h6>
+                <div class="desc-container">
+                  <img
+                    @click="DeleteHomework(homework.id)"
+                    v-if="profileInfo.is_staff"
+                    src="../assets/criss-cross.svg"
+                    alt
+                  />
+                  <h6>{{homework.description}}</h6>
+                </div>
                 <div v-if="homework.isOverdue" class="deadline-container" style="color: #F44336;">
                   <div class="deadline-label-container" style="border: 2px solid #F44336;">
                     <p>Deadline</p>
@@ -33,6 +41,7 @@
                 </div>
               </div>
               <a
+                v-if="profileInfo.is_staff"
                 :id="'showFormBtn_' + lecture.id"
                 v-on:click="ShowHomeworkForm(lecture.id)"
                 class="waves-effect btn"
@@ -45,6 +54,8 @@
                   name="homeworkDescription"
                   ref="homework_desc"
                 />
+                <b>Deadline:</b>
+                <datetime format="DD-MM-YYYY H:i" width="20px" v-model="deadline"></datetime>
                 <a
                   class="waves-effect green btn-small addBtn"
                   @click.prevent="PostHomework(lecture.id)"
@@ -64,12 +75,15 @@
 
 <script>
 import APIservice from "../services/APIservice";
+import datetime from "vuejs-datetimepicker";
 const myAPIservice = new APIservice();
 export default {
   name: "classes",
+  components: { datetime },
   data() {
     return {
       description: "",
+      deadline: "",
       profileInfo: [],
       classes: [],
       loading: false
@@ -90,8 +104,11 @@ export default {
     },
 
     PostHomework: function(id) {
-      myAPIservice.CreateHomework(this.description, id);
-      console.log(this.description, id);
+      myAPIservice.CreateHomework(this.description, id, this.deadline);
+    },
+
+    DeleteHomework: function(homeworkId) {
+      myAPIservice.DeleteHomework(homeworkId);
     }
   },
 
@@ -157,8 +174,14 @@ export default {
   margin-bottom: 5px;
 }
 
-.homework-container h6{
+.desc-container {
   max-width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
+.desc-container h6 {
+  margin-left: 10px;
+}
 </style>>

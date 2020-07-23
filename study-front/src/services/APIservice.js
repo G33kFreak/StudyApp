@@ -14,8 +14,18 @@ export default class APIservice {
         return axios.get('/accounts/profile/' + userId, { headers: authHeader() })
     }
 
-    CreateHomework(homeworkDesc, classId) {
-        return axios.post('api/homework/', { description: homeworkDesc, Class: parseInt(classId), headers: authHeader() })
+    CreateHomework(homeworkDesc, classId, deadline) {
+        return axios.post('api/homework/', { description: homeworkDesc, Class: parseInt(classId), deadline: deadline, headers: authHeader() })
+            .then((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                location.reload();
+            })
+    }
+
+    DeleteHomework(homeworkId) {
+        return axios.delete('api/homework/' + homeworkId, { headers: authHeader() })
             .then((error) => {
                 console.log(error);
             })
