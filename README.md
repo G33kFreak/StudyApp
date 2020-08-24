@@ -9,7 +9,7 @@ Username is a first letter of name and last name without space between them.
 ![](loginPage.png)
 
 # Main page
-### Main page is diffrent for students and lectors (staff permitions)
+### Main page is diffrent for students and lectors (staff permissions)
 #### How does it look like for lectors
 ![](mainPage.png)
 #### How doest it look like for students 
