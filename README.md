@@ -5,7 +5,7 @@
 ![](welcomePage.png)
 
 # Login page
-Username is first letter of name and lastname without space between them.
+Username is a first letter of name and last name without space between them.
 ![](loginPage.png)
 
 # Main page
