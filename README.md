@@ -1,5 +1,5 @@
 # StudyApp (backend api + frontend with Vue.js)
-## Project based on REST API (Django rest framework), frontend part with Vue.js and [android app](https://github.com/G33kFreak/eCoinMobile). Authentication system uses JWT tokens.  
+## Project based on REST API (Django rest framework), frontend part with Vue.js and [android app](https://github.com/G33kFreak/StudyAppMobile). Authentication system uses JWT tokens.  
 
 # Start page
 ![](welcomePage.png)
