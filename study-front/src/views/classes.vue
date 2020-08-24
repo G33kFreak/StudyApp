@@ -9,7 +9,7 @@
           <div class="card">
             <div class="card-content">
               <p class="card-title">{{lecture.name}}</p>
-              <p class="timestamp">Prowadzący: {{lecture.instructor_name}}</p>
+              <p class="timestamp">Lector: {{lecture.instructor_name}}</p>
               <hr />
               <div
                 class="homework-container"

@@ -8,7 +8,7 @@
         <h2 class="header">Profile page</h2>
         <div class="card horizontal usercard">
           <div class="card-image">
-            <p class="typeOfUser" v-if="profileInfo.is_staff">Prowadzący</p>
+            <p class="typeOfUser" v-if="profileInfo.is_staff">Lector</p>
             <p class="typeOfUser" v-else>Student</p>
           </div>
           <div class="card-stacked profileInfoCard">
